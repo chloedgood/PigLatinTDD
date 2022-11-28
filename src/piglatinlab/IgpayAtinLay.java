@@ -3,6 +3,16 @@ package piglatinlab;
 import java.util.Scanner;
 
 public class IgpayAtinLay {
+	public static void main (String[] args) {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("Please enter a word to convert to pig latin: ");
+		
+		String userInput = scan.nextLine();
+		
+		System.out.println(translate(userInput));
+						
+	}
 	
 	
 	public static boolean isVowel(char ch) {
@@ -12,34 +22,21 @@ public class IgpayAtinLay {
 	public static String translate(String userInput) {
 		String IgpayAtinLay1 = userInput.toLowerCase();
 		
-		int stringlength=IgpayAtinLay1.length();
+		int stringLength=IgpayAtinLay1.length();
 		
-		int index = -1;
-		
-		for (int i = 0; i < stringlength; i++) {
+		if(isVowel(userInput.charAt(0))) {
+			IgpayAtinLay1 = IgpayAtinLay1 + "way";
+		} else {		
+		for (int i = 1; i < stringLength; i++) {
 			if (isVowel(IgpayAtinLay1.charAt(i))) {
-				index = i;		
+			IgpayAtinLay1 = IgpayAtinLay1.substring(i) + IgpayAtinLay1.substring(0, i) + "ay";
+			break;
+				}
 			}
-			}
-			if(index == -1) {
-				return "-1";	
-			
 		}
-			return IgpayAtinLay1.substring(index) + IgpayAtinLay1.substring(0, index) + "ay";
+		return IgpayAtinLay1;
 	}
 	
-	public static void main (String[] args) {
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.println("Please enter a word to convert to pig latin: ");
-		
-		String word = scan.nextLine();
-		
-		System.out.println(translate(word));
-		
-		scan.close();
-				
-			}
-	}
+}
 
 
